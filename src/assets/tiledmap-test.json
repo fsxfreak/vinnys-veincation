@@ -1,0 +1,44 @@
+{ "height":100,
+ "layers":[
+        {
+         "compression":"zlib",
+         "data":"eJzt0UkKACEQA0AdneX\/L7af4GHAhq6CkGsgrQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQG09ckXGRs9DGyu5I0\/k3ejv0MZK\/JGLP3LxRy7+AP60AD4TAaU=",
+         "encoding":"base64",
+         "height":100,
+         "name":"Tile Layer 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":100,
+         "x":0,
+         "y":0
+        }],
+ "nextobjectid":1,
+ "orientation":"orthogonal",
+ "properties":
+    {
+
+    },
+ "renderorder":"right-down",
+ "tileheight":32,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "image":"..\/..\/..\/..\/..\/Desktop\/sdhacks\/vein-tile.png",
+         "imageheight":64,
+         "imagewidth":128,
+         "margin":0,
+         "name":"vein-tile",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tilecount":8,
+         "tileheight":32,
+         "tilewidth":32
+        }],
+ "tilewidth":32,
+ "version":1,
+ "width":100
+}
