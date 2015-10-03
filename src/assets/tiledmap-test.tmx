@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="vein-tile" tilewidth="32" tileheight="32" tilecount="8">
+  <image source="../../../../../Desktop/sdhacks/vein-tile.png" width="128" height="64"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0UkKACEQA0AdneX/L7af4GHAhq6CkGsgrQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQG09ckXGRs9DGyu5I0/k3ejv0MZK/JGLP3LxRy7+AP60AD4TAaU=
+  </data>
+ </layer>
+</map>
