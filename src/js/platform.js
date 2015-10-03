@@ -34,17 +34,19 @@ var platformState = {
             left: this.game.input.keyboard.addKey(Phaser.Keyboard.A),
             right: this.game.input.keyboard.addKey(Phaser.Keyboard.D)
         };
+	
+	cursors = this.game.input.keyboard.createCursorKeys();	
 
         cat.body.velocity.x = 0;
         this.game.camera.x = cat.x - 200;
         this.game.camera.y = cat.y;
         bg.tilePosition.x = -150;
-        if (wasd.left.isDown)
+        if (wasd.left.isDown || cursors.left.isDown)
         {
             cat.body.velocity.x = -300;
             cat.animations.play('left');
         }
-        else if (wasd.right.isDown)
+        else if (wasd.right.isDown || cursors.right.isDown)
         {
             cat.body.velocity.x = 300;
             cat.animations.play('right');
@@ -55,7 +57,7 @@ var platformState = {
             cat.frame = 0;
         }
 
-        if (wasd.up.isDown && cat.body.touching.down)
+        if ((wasd.up.isDown || cursors.up.isDown) && cat.body.touching.down)
         {
             cat.body.velocity.y = -600;
         }
