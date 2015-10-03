@@ -1,17 +1,13 @@
 var platformState = {
     create: function() {
-        bg = game.add.tileSprite(0, 0
-            , game.world.bounds.width, game.cache.getImage('bg').height, 'bg');
-        bg.scale = new PIXI.Point(3, 12);
+        map = game.add.tilemap('level1')
+        map.addTilesetImage('tiles', 'vein-tile');
 
-        platforms = this.game.add.group();
-        platforms.enableBody = true;
+        backgroundLayer = map.createLayer('background');
+        blockedLayer = map.createLayer('blocked');
+        map.setCollisionBetween(1, 800, true, 'blocked');
 
-        var ground = platforms.create(0, this.game.world.height - 64, 'platform');
-        ground.body.immovable = true;
-        var ledge = platforms.create(400, 400, 'platform');
-        ledge.body.immovable = true;
-        platforms.z = 2;
+        backgroundLayer.resizeWorld();
 
         cat = this.game.add.sprite(0, this.game.world.height - 300, 'cat');
         this.game.physics.arcade.enable(cat);
@@ -24,9 +20,11 @@ var platformState = {
 
         cat.animations.add('left', [0, 1], 10, true);
         cat.animations.add('right', [2, 3], 10, true);
+
+        game.physics.setBoundsToWorld();
     },
     update: function() {
-        this.game.physics.arcade.collide(cat, platforms);
+        this.game.physics.arcade.collide(cat, blockedLayer);
 
         wasd = {
             up: this.game.input.keyboard.addKey(Phaser.Keyboard.W),
@@ -35,12 +33,11 @@ var platformState = {
             right: this.game.input.keyboard.addKey(Phaser.Keyboard.D)
         };
 	
-	cursors = this.game.input.keyboard.createCursorKeys();	
+	    cursors = this.game.input.keyboard.createCursorKeys();	
 
         cat.body.velocity.x = 0;
         this.game.camera.x = cat.x - 200;
         this.game.camera.y = cat.y;
-        bg.tilePosition.x = -150;
         if (wasd.left.isDown || cursors.left.isDown)
         {
             cat.body.velocity.x = -300;
