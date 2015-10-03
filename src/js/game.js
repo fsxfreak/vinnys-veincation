@@ -5,9 +5,9 @@
     }
 
     PlatformState.prototype.preload = function() {
-        this.game.load.spritesheet('cat', 'home-cat.png', 64, 175);
-        this.game.load.image('platform', 'platform.png');
-        this.game.load.image('bg', 'bg.png');
+        this.game.load.spritesheet('cat', 'assets/home-cat.png', 64, 175);
+        this.game.load.image('platform', 'assets/platform.png');
+        this.game.load.image('bg', 'assets/bg.png');
     }
 
     PlatformState.prototype.create = function() {
