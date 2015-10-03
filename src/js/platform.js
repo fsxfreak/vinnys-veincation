@@ -54,7 +54,7 @@ var platformState = {
             cat.frame = 0;
         }
 
-        if ((wasd.up.isDown || cursors.up.isDown) && cat.body.touching.down)
+        if ((wasd.up.isDown || cursors.up.isDown) && cat.body.blocked.down)
         {
             cat.body.velocity.y = -600;
         }
