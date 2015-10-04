@@ -1,4 +1,4 @@
-var platformState = {
+/*var platformState = {
     message1: null,
     hitEllipse: function() {
         message1.visible = true;
@@ -8,16 +8,10 @@ var platformState = {
         map = game.add.tilemap('level1')
         map.addTilesetImage('tiles', 'vein-tile');
 
-        console.log('background');
         backgroundLayer = map.createLayer('background');
-        console.log('blocked');
         blockedLayer = map.createLayer('blocked');
         
         map.setCollisionBetween(1, 800, true, 'blocked');
-
-        map.setTileIndexCallback(4, this.hitEllipse, this, layerObjects);
-        map.setTileIndexCallback(3, this.hitEllipse, this, layerObjects);
-        map.setTileLocationCallback(2, 5, 1, 1, this.hitEllipse, this);
 
         backgroundLayer.resizeWorld();
         cat = this.game.add.sprite(0, this.game.world.height - 300, 'cat');
@@ -39,42 +33,83 @@ var platformState = {
         message1.visible = false;
     },
     update: function() {
-        this.game.physics.arcade.collide(cat, blockedLayer);
+        
+    }
+};*/
 
-        wasd = {
-            up: this.game.input.keyboard.addKey(Phaser.Keyboard.W),
-            down: this.game.input.keyboard.addKey(Phaser.Keyboard.S),
-            left: this.game.input.keyboard.addKey(Phaser.Keyboard.A),
-            right: this.game.input.keyboard.addKey(Phaser.Keyboard.D)
-        };
-	
-	    cursors = this.game.input.keyboard.createCursorKeys();	
+var platformState = function() {
+    Phaser.State.call(this);
+}
 
-        cat.body.velocity.x = 0;
-        this.game.camera.x = cat.x - 200;
-        this.game.camera.y = cat.y;
-        if (wasd.left.isDown || cursors.left.isDown)
-        {
-            cat.body.velocity.x = -300;
-            cat.animations.play('left');
+platformState.prototype = Object.create(Phaser.State.prototype);
+platformState.prototype.constructor = platformState;
+
+platformState.prototype.init = function(level_data) {
+    this.level_data = level_data;
+
+    this.game.physics.startSystem(Phaser.Physics.ARCADE);
+    this.game.physics.arcade.gravity.y = 981;
+
+    this.map = this.game.add.tilemap(level_data.map.key);
+    this.map.addTilesetImage(this.map.tilesets[0].name, level_data.map.tileset);
+};
+
+platformState.prototype.create = function () {
+    "use strict";
+    var group_name, object_layer, collision_tiles;
+
+    this.layers = {};
+    this.map.layers.forEach(function (layer) {
+        this.layers[layer.name] = this.map.createLayer(layer.name);
+        if (layer.properties.collision) {
+            collision_tiles = [];
+            layer.data.forEach(function (data_row) {
+                data_row.forEach(function(tile) {
+                    if (tile.index > 0 && collision_tiles.indexOf(tile.index) === -1) {
+                        collision_tiles.push(tile.index);
+                    }
+                }, this);
+            }, this);
+            this.map.setCollision(collision_tiles, true, layer.name);
         }
-        else if (wasd.right.isDown || cursors.right.isDown)
-        {
-            cat.body.velocity.x = 300;
-            cat.animations.play('right');
-        }
-        else if (wasd.down.isDown || cursors.down.isDown)
-        {
-            message1.visible = false;
-        }
-        else
-        {
-            cat.animations.stop();
-            cat.frame = 0;
-        }
-        if ((wasd.up.isDown || cursors.up.isDown) && cat.body.blocked.down)
-        {
-            cat.body.velocity.y = -600;
+    }, this);
+
+    // this.map = this.game.add.tilemap('level1');
+    // this.map.addTilesetImage('tiles', 'vein-tile');
+
+    // this.backgroundLayer = this.map.createLayer('background');
+    // this.blockedLayer = this.map.createLayer('blocked');
+
+    // this.backgroundLayer.resizeWorld();
+
+    // this.map.setCollisionBetween(1, 800, true, 'blocked');
+    //this.layers[this.map.layer.name].resizeWorld();
+
+    this.groups = {};
+    this.level_data.groups.forEach(function (group_name) {
+        this.groups[group_name] = this.game.add.group();
+    }, this);
+    //this.game.groups = this.groups;
+
+    this.prefabs = {};
+
+    for (object_layer in this.map.objects) {
+        if (this.map.objects.hasOwnProperty(object_layer)) {
+            this.map.objects[object_layer].forEach(this.create_object, this);
         }
     }
-};
+    console.log(this.game);
+    console.log(this.map);
+}
+
+platformState.prototype.create_object = function (object) {
+    var position, prefab;
+    position = {'x': object.x + (this.map.tileHeight / 2), 'y': object.y - (this.map.tileHeight / 2)};
+    switch(object.type) {
+    case 'player':
+        prefab = new Player(this.game, position, object.properties);
+        break;
+    //todo add other eneimes
+    }
+    this.prefabs[object.name] = prefab;
+}
