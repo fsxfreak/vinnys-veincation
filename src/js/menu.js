@@ -14,11 +14,10 @@ var menuState = {
     preload: function() {
         var menuLabel = game.add.text(80, 150, "Vinny's Veincation",
             {font: '30px Courier', fill: 0x000000 });
-        game.load.tilemap('level1', 'assets/tiledmap-test.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('level1', 'assets/level1.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('vein-tile', 'assets/vein-tile.png');
         game.load.spritesheet('cat', 'assets/home-cat.png', 64, 175);
-        game.load.image('platform', 'assets/platform.png');
-        game.load.image('bg', 'assets/bg.png');
+        game.load.image('goal', 'assets/goal.png');
     },
     start: function() {
         game.state.start('platform');

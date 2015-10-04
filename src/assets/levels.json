@@ -1,0 +1,15 @@
+{
+    "assets": {
+        "map_tiles": { "type": "image", "source": "assets/vein-tile.png" },
+        "player_spritesheet": { "type": "spritesheet", "source": "assets/home-cat.png", "frame_width": 64, "frame_height": 175, "frames": 4, "margin": 0, "spacing": 0 },
+        "level_tilemap": { "type": "tilemap", "source": "assets/level1.json" }
+    },
+    "groups": [
+        "enemies",
+        "players"
+    ],
+    "map": {
+        "key": "level_tilemap",
+        "tileset": "map_tiles"
+    }
+}
