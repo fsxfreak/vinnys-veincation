@@ -18,6 +18,8 @@ var menuState = {
         game.load.image('vein-tile', 'assets/vein-tile.png');
         game.load.spritesheet('cat', 'assets/home-cat.png', 64, 175);
         game.load.image('goal', 'assets/goal.png');
+        game.load.spritesheet('vinny-tile', 'assets/vinny-sprite.png', 91, 177);
+        game.load.image('wbc', 'assets/wbc.png');
     },
     start: function() {
         game.state.start('platform');

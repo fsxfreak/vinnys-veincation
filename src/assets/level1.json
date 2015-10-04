@@ -43,8 +43,72 @@
                  "type":"environmental",
                  "visible":true,
                  "width":46,
-                 "x":200,
-                 "y":157
+                 "x":4039,
+                 "y":380
+                }, 
+                {
+                 "ellipse":true,
+                 "height":33,
+                 "id":6,
+                 "name":"wbc1",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"enemy",
+                 "visible":true,
+                 "width":46,
+                 "x":599,
+                 "y":183
+                }, 
+                {
+                 "ellipse":true,
+                 "height":32,
+                 "id":8,
+                 "name":"wbc2",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"enemy",
+                 "visible":true,
+                 "width":49,
+                 "x":1214,
+                 "y":160
+                }, 
+                {
+                 "ellipse":true,
+                 "height":39,
+                 "id":9,
+                 "name":"wbc3",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"enemy",
+                 "visible":true,
+                 "width":52,
+                 "x":2905,
+                 "y":251
+                }, 
+                {
+                 "ellipse":true,
+                 "height":40,
+                 "id":10,
+                 "name":"wbc4",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"enemy",
+                 "visible":true,
+                 "width":52,
+                 "x":3750,
+                 "y":406
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -53,7 +117,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":6,
+ "nextobjectid":11,
  "orientation":"orthogonal",
  "properties":
     {
