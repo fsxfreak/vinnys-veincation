@@ -1,14 +1,25 @@
 var platformState = {
+    message1: null,
+    hitEllipse: function() {
+        message1.visible = true;
+        console.log('ok');
+    },
     create: function() {
         map = game.add.tilemap('level1')
         map.addTilesetImage('tiles', 'vein-tile');
 
+        console.log('background');
         backgroundLayer = map.createLayer('background');
+        console.log('blocked');
         blockedLayer = map.createLayer('blocked');
+        
         map.setCollisionBetween(1, 800, true, 'blocked');
 
-        backgroundLayer.resizeWorld();
+        map.setTileIndexCallback(4, this.hitEllipse, this, layerObjects);
+        map.setTileIndexCallback(3, this.hitEllipse, this, layerObjects);
+        map.setTileLocationCallback(2, 5, 1, 1, this.hitEllipse, this);
 
+        backgroundLayer.resizeWorld();
         cat = this.game.add.sprite(0, this.game.world.height - 300, 'cat');
         this.game.physics.arcade.enable(cat);
 
@@ -22,6 +33,10 @@ var platformState = {
         cat.animations.add('right', [2, 3], 10, true);
 
         game.physics.setBoundsToWorld();
+
+        message1 = game.add.text(200, 200, "goddamn messag ebox"
+            , {font: '30px Courier', fill: 0xffffff });
+        message1.visible = false;
     },
     update: function() {
         this.game.physics.arcade.collide(cat, blockedLayer);
@@ -48,12 +63,15 @@ var platformState = {
             cat.body.velocity.x = 300;
             cat.animations.play('right');
         }
+        else if (wasd.down.isDown || cursors.down.isDown)
+        {
+            message1.visible = false;
+        }
         else
         {
             cat.animations.stop();
             cat.frame = 0;
         }
-
         if ((wasd.up.isDown || cursors.up.isDown) && cat.body.blocked.down)
         {
             cat.body.velocity.y = -600;
