@@ -3,6 +3,8 @@ Vinny's Veincation
 
 Vinny's Veincation is a 2D sidescrolling platformer game written in Javascript using either WebGL or html5 canvas. It was written by a team of three at SDHacks 2015 mainly as a learning experience.
 
+![In-game screenshot](src/assets/screenie.png)
+
 ## Dependencies
 
 * **[Phaser](http://phaser.io/)** - Used to handle graphics and physics.
